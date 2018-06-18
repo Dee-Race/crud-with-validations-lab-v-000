@@ -5,6 +5,10 @@ class Song < ActiveRecord::Base
   validates :artist_name, presence: true
   validate :release_year_future
 
+
+  private
+  
+
   def release_year_future
     if release_year
       if released? && Time.new.year < release_year
