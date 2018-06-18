@@ -3,6 +3,16 @@ class Song < ActiveRecord::Base
   validates :title, uniqueness: {scope: [:artist_name, :release_year]}
   validates :released, inclusion: {in: [true, false]}
   validates :artist_name, presence: true
-  validates :release_year, presence: true, if: :released
+  validate :release_year_future
+
+  def release_year_future
+    if release_year
+      if released? && Time.new.year < release_year
+        errors[:release_year] << "Release year must be equal to or earlier than current year if the song has already been released"
+      end 
+    else released? && !release_year
+      errors[:release_year] << "Please provide the release year if the song has been released."
+    end 
+  end
 
 end
