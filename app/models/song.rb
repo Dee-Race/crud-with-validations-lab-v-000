@@ -14,7 +14,7 @@ class Song < ActiveRecord::Base
       if released? && Time.new.year < release_year
         errors[:release_year] << "Release year must be equal to or earlier than current year if the song has already been released"
       end
-    else released? && !release_year
+    elsif released? && !release_year
       errors[:release_year] << "Please provide the release year if the song has been released."
     end
   end
