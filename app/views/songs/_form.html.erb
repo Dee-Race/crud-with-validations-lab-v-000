@@ -7,7 +7,7 @@
     </div>
     <% end %>
 
-<%= form_for @song do |f| %>
+<%= form_for(@song) do |f| %>
   <div class="field <%='field_with_errors' if @song.errors.[:title].any?%>">
     <% f.label :title %>
     <%= f.text_field :title %>
