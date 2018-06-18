@@ -7,7 +7,7 @@ class Song < ActiveRecord::Base
 
 
   private
-  
+
 
   def release_year_future
     if release_year
